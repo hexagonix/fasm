@@ -1,6 +1,9 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.28x (Dec 11, 2021)
+
+[+] Hexagonix operating system support added.
 
 version 1.73.28 (Sep 16, 2021)
 
