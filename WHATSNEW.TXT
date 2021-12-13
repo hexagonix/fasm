@@ -5,6 +5,7 @@ version 1.73.28x (Dec 11, 2021)
 
 [+] Hexagonix operating system support added.
 [+] Dependencies fixed (andrmda.s) (12-12-2021).
+[+] Full Hexagonix support (12-12-2021).
 
 version 1.73.28 (Sep 16, 2021)
 
