@@ -4,7 +4,8 @@ Visit http://flatassembler.net/ for more information.
 version 1.73.29x (Dec 24, 2021)
 
 [+] fasm version 1.73.29 port to Hexagonix.
-
+[+] Changes documented and copyright added.
+[+] Change "Andromeda" references to "Hexagonix".
 
 version 1.73.28x (Dec 11, 2021)
 

@@ -28,7 +28,7 @@ include "../../../../LibAPP/andrmda.s"
 
 fasmX:
 
-;; Capturar os parâmetros fornecidos pelo Andromeda®
+;; Capturar os parâmetros fornecidos pelo Hexagonix®
 
 	mov [regES], es
 	
@@ -136,7 +136,7 @@ filePosition:	dd 0
 nomeArquivo: 	times 50 db 0
 fileNameW: 	times 50 db 0	;File name to write
 
-include 'Andromeda.inc' ;; Interface para o Andromeda
+include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
 include '../VERSION.INC'
 

@@ -1,6 +1,14 @@
+; flat assembler interface for Linux
+; Copyright (c) 1999-2021, Tomasz Grysztar.
+; All rights reserved.
+
+; Hexagonix system interface for flat assembler
+; Copyright (c) 2016-2021, Felipe Miguel Nery Lunkes
+; All rights reserved.
+
 ;;************************************************************************************
 ;;
-;; Adaptação para adequação as chamadas de sistema do Andromeda®
+;; Adaptação para adequação as chamadas de sistema do Hexagonix®
 ;;
 ;;************************************************************************************
 
