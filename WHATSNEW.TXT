@@ -1,11 +1,17 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.29x (Dec 24, 2021)
+
+[+] fasm version 1.73.29 port to Hexagonix.
+
+
 version 1.73.28x (Dec 11, 2021)
 
 [+] Hexagonix operating system support added.
 [+] Dependencies fixed (andrmda.s) (12-12-2021).
 [+] Full Hexagonix support (12-12-2021).
+
 
 version 1.73.29 (Dec 18, 2021)
 
