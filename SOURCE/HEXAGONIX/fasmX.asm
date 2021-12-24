@@ -142,7 +142,7 @@ include '../VERSION.INC'
 
 _copyright db 'Copyright (c) 1999-2021, Tomasz Grysztar',0xA,0
 
-_logo db 10, 'flat assembler para Sistema Operacional Hexagonix(R) versao ',VERSION_STRING,0
+_logo db 10, 'flat assembler para Hexagonix(R) versao ',VERSION_STRING,0
 _usage db 0xA
        db 'Uso: fasmX <fonte> [saida]',0xA
        db 0
