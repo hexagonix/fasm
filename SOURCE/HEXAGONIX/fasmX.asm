@@ -1,6 +1,9 @@
-
 ; flat assembler interface for Linux
 ; Copyright (c) 1999-2021, Tomasz Grysztar.
+; All rights reserved.
+
+; Hexagonix system interface for flat assembler
+; Copyright (c) 2016-2021, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;;************************************************************************************
@@ -18,7 +21,7 @@ use32
 include "../../../../LibAPP/HAPP.s" ;; Aqui está uma estrutura para o cabeçalho HAPP
 
 ;; Instância | Estrutura | Arquitetura | Versão | Subversão | Entrada | Tipo  
-cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 8, 57, fasmX, 01h
+cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 8, 58, fasmX, 01h
 
 ;;************************************************************************************
 
@@ -39,7 +42,7 @@ fasmX:
 	
 	novaLinha
 	
-;;	Início do código do FASM
+;; Início do código do FASM
 
 	mov	esi,_logo
 	call	print_string
