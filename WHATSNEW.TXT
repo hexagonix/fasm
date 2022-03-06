@@ -1,6 +1,27 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.30x (Mar 06, 2022)
+
+[+] Tested for Hexagonix.
+
+
+version 1.73.30 (Feb 21, 2022)
+
+[-] No longer signal an error when there is no line to concatenate with "\".
+
+version 1.73.29x (Dec 24, 2021)
+
+[+] fasm version 1.73.29 port to Hexagonix.
+[+] Changes documented and copyright added.
+[+] Change "Andromeda" references to "Hexagonix".
+
+version 1.73.28x (Dec 11, 2021)
+
+[+] Hexagonix operating system support added.
+[+] Dependencies fixed (andrmda.s) (12-12-2021).
+[+] Full Hexagonix support (12-12-2021).
+
 
 version 1.73.30 (Feb 21, 2022)
 
