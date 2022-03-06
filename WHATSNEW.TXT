@@ -5,7 +5,6 @@ version 1.73.30x (Mar 06, 2022)
 
 [+] Tested for Hexagonix.
 
-
 version 1.73.30 (Feb 21, 2022)
 
 [-] No longer signal an error when there is no line to concatenate with "\".
