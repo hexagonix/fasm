@@ -8,7 +8,7 @@
 
 ;;************************************************************************************
 ;;
-;; Adaptação para adequação as chamadas de sistema do Hexagonix®
+;; Adaptação para adequação das chamadas de sistema do Hexagonix®
 ;;
 ;;************************************************************************************
 
