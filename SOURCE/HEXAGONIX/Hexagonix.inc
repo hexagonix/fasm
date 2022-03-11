@@ -3,7 +3,7 @@
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2016-2021, Felipe Miguel Nery Lunkes
+; Copyright (c) 2016-2022, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;;************************************************************************************

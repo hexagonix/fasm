@@ -3,7 +3,7 @@
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2016-2021, Felipe Miguel Nery Lunkes
+; Copyright (c) 2016-2022, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;;************************************************************************************
@@ -25,7 +25,7 @@ cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 8, 58, fasmX, 01h
 
 ;;************************************************************************************
 
-include "../../../../LibAPP/hexagon.s"
+include "../../../../LibAPP/hexagon.s" ;; libasm para flat assembler
 
 ;;************************************************************************************
 
