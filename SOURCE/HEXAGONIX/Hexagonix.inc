@@ -38,7 +38,7 @@ obterParametros:
 	
 	mov al, ' '
 
-	Andromeda encontrarCaractere
+	Hexagonix encontrarCaractere
 
 	jc .unicoArgumento
 
@@ -101,7 +101,7 @@ finalizarProcesso:
 	
 	mov ebx, 00h
 	
-	Andromeda encerrarProcesso
+	Hexagonix encerrarProcesso
 
 	ret
 
@@ -133,7 +133,7 @@ exibirCaractere:
 
 	mov al, dl
 
-	Andromeda imprimirCaractere
+	Hexagonix imprimirCaractere
 
 	pop ebx
 
@@ -170,7 +170,7 @@ exibirBloco:
 
 	lodsb
 
-	Andromeda imprimirCaractere
+	Hexagonix imprimirCaractere
 
 	loop .loop
 	
@@ -195,7 +195,7 @@ abrirArquivo:
 	
 	mov esi, edx
 
-	Andromeda tamanhoString
+	Hexagonix tamanhoString
 
 	inc eax
 	
@@ -211,7 +211,7 @@ abrirArquivo:
 	mov esi, nomeArquivo
 	mov edi, endBuffer + 1024*10000 + 1024*3000
 
-	Andromeda abrir
+	Hexagonix abrir
 
 	jc .erro
 
@@ -250,7 +250,7 @@ criarArquivo:
 	
 	mov esi, edx
 
-	Andromeda tamanhoString
+	Hexagonix tamanhoString
 
 	inc eax
 	
@@ -262,7 +262,7 @@ criarArquivo:
 	
 	mov esi, fileNameW
 
-	Andromeda deletarArquivo
+	Hexagonix deletarArquivo
 	
 	popad
 	pushad
@@ -271,7 +271,7 @@ criarArquivo:
 	mov esi, fileNameW
 	mov edi, fileNameW
 
-	Andromeda salvarArquivo		
+	Hexagonix salvarArquivo		
 
 	jnc .successo		
 	
@@ -279,7 +279,7 @@ criarArquivo:
 
 	mov al, 'C'
 
-	Andromeda imprimirCaractere
+	Hexagonix imprimirCaractere
 
 	stc
 
@@ -343,13 +343,13 @@ escreverArquivo:
 
 	mov esi, fileNameW
 
-	Andromeda deletarArquivo
+	Hexagonix deletarArquivo
 	
 	mov eax, ecx
 	mov edi, edx
 	mov esi, fileNameW
 
-	Andromeda salvarArquivo
+	Hexagonix salvarArquivo
 
 	jc .erro
 
