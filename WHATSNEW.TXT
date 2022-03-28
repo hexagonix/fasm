@@ -1,6 +1,11 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.30.1x (Mar 28, 2022)
+
+[+] Dependencies fixed (hexagon.s) (03-28-2022).
+[-] Change the "Andromeda" system call macro to "Hexagonix"
+
 version 1.73.30x (Mar 06, 2022)
 
 [+] Tested for Hexagonix.
