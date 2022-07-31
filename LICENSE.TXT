@@ -3,6 +3,10 @@ flat assembler  version 1.73
 Copyright (c) 1999-2022, Tomasz Grysztar.
 All rights reserved.
 
+Hexagonix system interface for flat assembler
+Copyright (c) 2015-2022, Felipe Miguel Nery Lunkes.
+All rights reserved.
+
 This program is free for commercial and non-commercial use as long as
 the following conditions are adhered to.
 
