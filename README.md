@@ -1,5 +1,7 @@
 <div align="center">
 
+# flat assembler Hexagonix edition (fasmX)
+  
 ![](https://img.shields.io/github/license/hexagonix/fasmX.svg)
 ![](https://img.shields.io/github/stars/hexagonix/fasmX.svg)
 ![](https://img.shields.io/github/issues/hexagonix/fasmX.svg)
@@ -13,9 +15,9 @@
 
 <hr>
 
-# English 
+## English 
 
-## flat assembler Hexagonix edition (fasmX)
+### flat assembler Hexagonix edition (fasmX)
 
 fasmX is a fork of the flat assembler 1 (fasm) aiming to be fully compatible with Hexagonix and upgradable alongside the current version of fasm.
 
@@ -27,13 +29,13 @@ With the fasm port to Hexagonix, the system became self-hosting, that is, it can
 
 You can report any performance issues, bugs or errors [here](https://github.com/hexagonix/fasm/issues).
 
-### flat assembler 1
+#### flat assembler 1
 
 The flat assembler (fasm) is an open-source, general-purpose assembler used as a standard for developing Hexagonix and its applications. fasmX is based on code available in the official fasm repository, available here, and is always updated after an official fasm release. For more information about fasm, visit the [official repository](https://github.com/tgrysztar/fasm) or the [project's website](https://flatassembler.net/).
 
-# Português
+## Português
 
-## flat assembler para Hexagonix (fasmX)
+### flat assembler para Hexagonix (fasmX)
 
 fasmX é um fork do flat assembler 1 (fasm) com o objetivo de ser totalmente compatível com o Hexagonix e atualizável junto com a versão atual do fasm.
 
@@ -45,6 +47,6 @@ Com o port do fasm para Hexagonix, o sistema passou a ser auto-hospedado, ou sej
 
 Você pode relatar quaisquer problemas de desempenho, bugs ou erros [aqui](https://github.com/hexagonix/fasm/issues).
 
-### fasm assembler 1
+#### fasm assembler 1
 
 O flat assembler (fasm) é um montador de uso geral de código aberto usado como padrão para o desenvolvimento do Hexagonix e seus aplicativos. O fasmX é baseado no código disponível no repositório oficial do fasm, disponível aqui, e é sempre atualizado após um lançamento oficial do fasm. Para mais informações sobre o fasm, visite o [repositório oficial](https://github.com/tgrysztar/fasm) ou o [site do projeto](https://flatassembler.net/).
