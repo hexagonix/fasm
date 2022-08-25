@@ -1,3 +1,18 @@
+<div align="center">
+
+![](https://img.shields.io/github/license/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/stars/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/issues/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/issues-closed/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/issues-pr/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/issues-pr-closed/hexagonix/fasmX.svg)
+![](https://img.shields.io/github/downloads/hexagonix/fasmX/total.svg)
+![](https://img.shields.io/github/release/hexagonix/fasmX.svg)
+
+</div>
+
+<hr>
+
 # English 
 
 ## flat assembler Hexagonix edition (fasmX)
