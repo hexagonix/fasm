@@ -15,7 +15,7 @@
 
 <hr>
 
-## English 
+## 🇬🇧 English
 
 ### flat assembler Hexagonix edition (fasmX)
 
@@ -33,7 +33,7 @@ You can report any performance issues, bugs or errors [here](https://github.com/
 
 The flat assembler (fasm) is an open-source, general-purpose assembler used as a standard for developing Hexagonix and its applications. fasmX is based on code available in the official fasm repository, available here, and is always updated after an official fasm release. For more information about fasm, visit the [official repository](https://github.com/tgrysztar/fasm) or the [project's website](https://flatassembler.net/).
 
-## Português
+## 🇧🇷 Português (Brasil)
 
 ### flat assembler para Hexagonix (fasmX)
 
