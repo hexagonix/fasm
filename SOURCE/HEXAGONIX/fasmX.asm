@@ -143,16 +143,17 @@ include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
 include '../VERSION.INC'
 
-_copyright db 'Copyright (c) 1999-2022, Tomasz Grysztar',0xA,0
+_copyright db 'Copyright (c) 1999-2022, Tomasz Grysztar', 0xA 
+           db 'Copyright (c) 2016-2022, Felipe Miguel Nery Lunkes', 0xA, 0
 
-_logo db 10, 'flat assembler para Hexagonix(R) versao ',VERSION_STRING,0
+_logo db 10, 'flat assembler for Hexagonix(R) version ',VERSION_STRING,0
 _usage db 0xA
-       db 'Uso: fasmX <fonte> [saida]',0xA
+       db 'Usage: fasmX <source> [output]',0xA
        db 0
 _memory_prefix db '  (',0
-_memory_suffix db ' Kbytes de memoria)',0xA,0
-_passes_suffix db ' passadas, ',0
-_seconds_suffix db ' segundos, ',0
+_memory_suffix db ' Kbytes of memory)',0xA,0
+_passes_suffix db ' passes, ',0
+_seconds_suffix db ' seconds, ',0
 _bytes_suffix db ' bytes.',0xA,0
 
 include '../ERRORS.INC'
