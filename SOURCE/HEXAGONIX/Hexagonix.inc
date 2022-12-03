@@ -690,7 +690,7 @@ assembler_error:
 	jmp	exit_program
 ;______________________________________________________________________________
 
-error_prefix db 'Erro: ',0
+error_prefix db 'Error: ',0
 error_suffix db '.'
 lf db 0xA,0
 line_number_start db ' [',0
