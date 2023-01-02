@@ -40,8 +40,6 @@ fasmX:
     
     mov [linha_comando], edi
     
-    novaLinha
-    
 ;; Início do código do FASM
 
     mov esi,_logo
