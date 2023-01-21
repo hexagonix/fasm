@@ -3,12 +3,12 @@
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2016-2022, Felipe Miguel Nery Lunkes
+; Copyright (c) 2016-2023, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;;************************************************************************************
 ;;
-;; Adaptação para adequação das chamadas de sistema do Hexagonix®
+;; Adaptação para execução no Hexagonix®
 ;;
 ;;************************************************************************************
 
@@ -38,7 +38,7 @@ obterParametros:
 	
 	mov al, ' '
 
-	Hexagonix encontrarCaractere
+	hx.syscall encontrarCaractere
 
 	jc .unicoArgumento
 
@@ -101,7 +101,7 @@ finalizarProcesso:
 	
 	mov ebx, 00h
 	
-	Hexagonix encerrarProcesso
+	hx.syscall encerrarProcesso
 
 	ret
 
@@ -133,7 +133,7 @@ exibirCaractere:
 
 	mov al, dl
 
-	Hexagonix imprimirCaractere
+	hx.syscall imprimirCaractere
 
 	pop ebx
 
@@ -170,7 +170,7 @@ exibirBloco:
 
 	lodsb
 
-	Hexagonix imprimirCaractere
+	hx.syscall imprimirCaractere
 
 	loop .loop
 	
@@ -195,7 +195,7 @@ abrirArquivo:
 	
 	mov esi, edx
 
-	Hexagonix tamanhoString
+	hx.syscall tamanhoString
 
 	inc eax
 	
@@ -211,7 +211,7 @@ abrirArquivo:
 	mov esi, nomeArquivo
 	mov edi, endBuffer + 1024*10000 + 1024*3000
 
-	Hexagonix abrir
+	hx.syscall abrir
 
 	jc .erro
 
@@ -250,7 +250,7 @@ criarArquivo:
 	
 	mov esi, edx
 
-	Hexagonix tamanhoString
+	hx.syscall tamanhoString
 
 	inc eax
 	
@@ -262,7 +262,7 @@ criarArquivo:
 	
 	mov esi, fileNameW
 
-	Hexagonix deletarArquivo
+	hx.syscall deletarArquivo
 	
 	popad
 	pushad
@@ -271,7 +271,7 @@ criarArquivo:
 	mov esi, fileNameW
 	mov edi, fileNameW
 
-	Hexagonix salvarArquivo		
+	hx.syscall salvarArquivo		
 
 	jnc .successo		
 	
@@ -279,7 +279,7 @@ criarArquivo:
 
 	mov al, 'C'
 
-	Hexagonix imprimirCaractere
+	hx.syscall imprimirCaractere
 
 	stc
 
@@ -343,13 +343,13 @@ escreverArquivo:
 
 	mov esi, fileNameW
 
-	Hexagonix deletarArquivo
+	hx.syscall deletarArquivo
 	
 	mov eax, ecx
 	mov edi, edx
 	mov esi, fileNameW
 
-	Hexagonix salvarArquivo
+	hx.syscall salvarArquivo
 
 	jc .erro
 
