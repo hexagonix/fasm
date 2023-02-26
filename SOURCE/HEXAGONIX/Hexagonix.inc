@@ -3,7 +3,7 @@
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2016-2023, Felipe Miguel Nery Lunkes
+; Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;;************************************************************************************
@@ -14,7 +14,7 @@
 
 ;; Entrada:
 ;;
-;; [linha_comando] = Aponta para a linha fornecida pelo Sistema
+;; [linha_comando] = Aponta para a linha fornecida pelo sistema
 ;; 
 ;; Saída:
 ;;
@@ -420,12 +420,12 @@ moverPosicao:
 
 ;;************************************************************************************
 ;;
-;; Fim da implementação para o Andromeda®
+;; Fim da implementação para o Hexagonix®
 ;;
 ;;************************************************************************************
 
 ; flat assembler
-; Copyright (c) 1999-2017, Tomasz Grysztar.
+; Copyright (c) 1999-2022, Tomasz Grysztar.
 ; All rights reserved.
 
 get_params:

@@ -1,6 +1,12 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.30.3x (Feb 25, 2023)
+
+[+] Copyright year update (Hexagonix support code).
+[+] Comments update (Hexagonix support code).
+[-] Change the "Hexagonix" system call macro to "hx.syscall"
+
 version 1.73.30.2x (Jun 15, 2022)
 
 [+] Hexagon v1.0 support.
