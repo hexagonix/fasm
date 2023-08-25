@@ -21,7 +21,7 @@
 
 ### flat assembler Hexagonix edition (fasmX)
 
-fasmX is a fork of the flat assembler 1 (fasm) aiming to be fully compatible with Hexagonix and upgradable alongside the current version of fasm.
+fasmX is a fork of the [flat assembler 1](https://github.com/tgrysztar/fasm) (fasm) aiming to be fully compatible with Hexagonix and upgradable alongside the current version of fasm.
 
 For more information, read the [license file](https://github.com/hexagonix/fasm/blob/main/LICENSE.TXT).
 
@@ -39,7 +39,7 @@ The flat assembler (fasm) is an open-source, general-purpose assembler used as a
 
 ### flat assembler para Hexagonix (fasmX)
 
-fasmX é um fork do flat assembler 1 (fasm) com o objetivo de ser totalmente compatível com o Hexagonix e atualizável junto com a versão atual do fasm.
+fasmX é um fork do [flat assembler 1](https://github.com/tgrysztar/fasm) (fasm) com o objetivo de ser totalmente compatível com o Hexagonix e atualizável junto com a versão atual do fasm.
 
 Para obter mais informações, leia o [arquivo de licença](https://github.com/hexagonix/fasm/blob/main/LICENSE.TXT).
 
