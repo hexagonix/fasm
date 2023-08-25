@@ -1,7 +1,6 @@
 
 Visit http://flatassembler.net/ for more information.
 
-
 version 1.73.31 (Jul 12, 2023)
 
 [+] Handling multiple sign characters before a floating-point value.
@@ -9,6 +8,41 @@ version 1.73.31 (Jul 12, 2023)
 [-] Corrected an issue with negative offsets for some relocatable addresses.
 
 [-] Fixed a potential crash in external stub processor for PE.
+
+version 1.73.30.3x (Feb 25, 2023)
+
+[+] Copyright year update (Hexagonix support code).
+[+] Comments update (Hexagonix support code).
+[-] Change the "Hexagonix" system call macro to "hx.syscall"
+
+version 1.73.30.2x (Jun 15, 2022)
+
+[+] Hexagon v1.0 support.
+
+version 1.73.30.1x (Mar 28, 2022)
+
+[+] Dependencies fixed (hexagon.s) (03-28-2022).
+[-] Change the "Andromeda" system call macro to "Hexagonix"
+
+version 1.73.30x (Mar 06, 2022)
+
+[+] Tested for Hexagonix.
+
+version 1.73.30 (Feb 21, 2022)
+
+[-] No longer signal an error when there is no line to concatenate with "\".
+
+version 1.73.29x (Dec 24, 2021)
+
+[+] fasm version 1.73.29 port to Hexagonix.
+[+] Changes documented and copyright added.
+[+] Change "Andromeda" references to "Hexagonix".
+
+version 1.73.28x (Dec 11, 2021)
+
+[+] Hexagonix operating system support added.
+[+] Dependencies fixed (andrmda.s) (12-12-2021).
+[+] Full Hexagonix support (12-12-2021).
 
 
 version 1.73.30 (Feb 21, 2022)
