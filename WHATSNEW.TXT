@@ -1,6 +1,10 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.31x (Aug 24, 2023)
+
+[+] Tested for Hexagonix.
+
 version 1.73.31 (Jul 12, 2023)
 
 [+] Handling multiple sign characters before a floating-point value.
