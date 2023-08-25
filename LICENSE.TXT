@@ -4,7 +4,7 @@ Copyright (c) 1999-2022, Tomasz Grysztar.
 All rights reserved.
 
 Hexagonix system interface for flat assembler
-Copyright (c) 2015-2022, Felipe Miguel Nery Lunkes.
+Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes.
 All rights reserved.
 
 This program is free for commercial and non-commercial use as long as
