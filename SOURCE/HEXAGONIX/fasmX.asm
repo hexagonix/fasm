@@ -126,10 +126,10 @@ information:
     mov al,1
     jmp exit_program
 
-fileSize:   dd 0
-filePosition:   dd 0
-nomeArquivo:    times 50 db 0
-fileNameW:  times 50 db 0   ;File name to write
+fileSize:     dd 0
+filePosition: dd 0
+nomeArquivo:  times 50 db 0
+fileNameW:    times 50 db 0   ;; Nome de arquivo para escrever
 
 include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
