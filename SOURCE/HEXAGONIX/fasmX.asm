@@ -20,6 +20,7 @@ cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 1, 00, fasmX, 01h
 ;;************************************************************************************
 
 include "hexagon.s" ;; libasm para flat assembler
+include "console.s"
 
 ;;************************************************************************************
 
