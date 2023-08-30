@@ -1,5 +1,5 @@
 ; flat assembler interface for Linux
-; Copyright (c) 1999-2021, Tomasz Grysztar.
+; Copyright (c) 1999-2023, Tomasz Grysztar.
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
@@ -21,49 +21,49 @@
 ;; [input_file]  - Nome do código fonte
 ;; [output_file] - Nome do binário a ser gerado
 ;;
-;;	CF definido em caso de erro
+;;  CF definido em caso de erro
 
 obterParametros:
 
-	mov esi, [linha_comando]
-	mov [input_file], esi
-		
-	cmp byte[esi], 0
-	je .parametrosInvalidos
-	
-	mov [symbols_file], 0
-	mov [memory_setting], 0
-	
-	mov [passes_limit], 100
-	
-	mov al, ' '
+    mov esi, [linha_comando]
+    mov [input_file], esi
+        
+    cmp byte[esi], 0
+    je .parametrosInvalidos
+    
+    mov [symbols_file], 0
+    mov [memory_setting], 0
+    
+    mov [passes_limit], 100
+    
+    mov al, ' '
 
-	hx.syscall encontrarCaractere
+    hx.syscall encontrarCaractere
 
-	jc .unicoArgumento
+    jc .unicoArgumento
 
-	mov al, ' '
+    mov al, ' '
 
-	call encontrarString
-	
-	mov [output_file], esi
-	jmp .pronto
-	
+    call encontrarString
+    
+    mov [output_file], esi
+    jmp .pronto
+    
 .unicoArgumento:
 
-	mov [output_file], 0
+    mov [output_file], 0
 
 .pronto:
 
-	clc
+    clc
 
-	ret
-	
+    ret
+    
 .parametrosInvalidos:
 
-	stc
+    stc
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -80,30 +80,30 @@ obterParametros:
 
 encontrarString:
 
-	lodsb
-	
-	cmp al, ' '
-	je .pronto
-	
-	jmp encontrarString
+    lodsb
+    
+    cmp al, ' '
+    je .pronto
+    
+    jmp encontrarString
 
 .pronto:
 
-	mov byte[esi-1], 0
+    mov byte[esi-1], 0
 
-	ret
+    ret
 
 ;;************************************************************************************
 
 finalizarProcesso:
 
-	mov es, [regES]
-	
-	mov ebx, 00h
-	
-	hx.syscall encerrarProcesso
+    mov es, [regES]
+    
+    mov ebx, 00h
+    
+    hx.syscall encerrarProcesso
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -113,13 +113,13 @@ finalizarProcesso:
 
 exibirString:
 
-	push ebx
+    push ebx
 
     imprimirString
 
-	pop ebx
+    pop ebx
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -129,15 +129,15 @@ exibirString:
 
 exibirCaractere:
 
-	push ebx
+    push ebx
 
-	mov al, dl
+    mov al, dl
 
-	hx.syscall imprimirCaractere
+    hx.syscall imprimirCaractere
 
-	pop ebx
+    pop ebx
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -147,13 +147,13 @@ exibirCaractere:
 
 exibirNumero:
 
-	push ebx
+    push ebx
 
-	imprimirInteiro
+    imprimirInteiro
 
-	pop ebx
+    pop ebx
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -164,19 +164,19 @@ exibirNumero:
 
 exibirBloco:
 
-	push ebx
+    push ebx
 
 .loop:
 
-	lodsb
+    lodsb
 
-	hx.syscall imprimirCaractere
+    hx.syscall imprimirCaractere
 
-	loop .loop
-	
-	pop ebx
+    loop .loop
+    
+    pop ebx
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -191,47 +191,47 @@ exibirBloco:
 
 abrirArquivo:
 
-	pushad
-	
-	mov esi, edx
+    pushad
+    
+    mov esi, edx
 
-	hx.syscall tamanhoString
+    hx.syscall tamanhoString
 
-	inc eax
-	
-	mov ecx, eax
-	mov esi, edx
-	mov edi, nomeArquivo
+    inc eax
+    
+    mov ecx, eax
+    mov esi, edx
+    mov edi, nomeArquivo
 
-	rep movsb
-	
-	popad
-	pushad
-		
-	mov esi, nomeArquivo
-	mov edi, endBuffer + 1024*10000 + 1024*3000
+    rep movsb
+    
+    popad
+    pushad
+        
+    mov esi, nomeArquivo
+    mov edi, endBuffer + 1024*10000 + 1024*3000
 
-	hx.syscall abrir
+    hx.syscall abrir
 
-	jc .erro
+    jc .erro
 
-	mov [fileSize], eax
-	
-	clc
+    mov [fileSize], eax
+    
+    clc
 
-	popad
+    popad
 
-	mov ebx, 3
+    mov ebx, 3
 
-	ret
+    ret
 
 .erro:
 
-	stc
+    stc
 
-	popad
+    popad
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -246,56 +246,56 @@ abrirArquivo:
 
 criarArquivo:
 
-	pushad
-	
-	mov esi, edx
+    pushad
+    
+    mov esi, edx
 
-	hx.syscall tamanhoString
+    hx.syscall tamanhoString
 
-	inc eax
-	
-	mov ecx, eax
-	mov esi, edx
-	mov edi, fileNameW
+    inc eax
+    
+    mov ecx, eax
+    mov esi, edx
+    mov edi, fileNameW
 
-	rep movsb
-	
-	mov esi, fileNameW
+    rep movsb
+    
+    mov esi, fileNameW
 
-	hx.syscall deletarArquivo
-	
-	popad
-	pushad
-	
-	mov eax, 0
-	mov esi, fileNameW
-	mov edi, fileNameW
+    hx.syscall deletarArquivo
+    
+    popad
+    pushad
+    
+    mov eax, 0
+    mov esi, fileNameW
+    mov edi, fileNameW
 
-	hx.syscall salvarArquivo		
+    hx.syscall salvarArquivo        
 
-	jnc .successo		
-	
+    jnc .successo       
+    
 .errro:
 
-	mov al, 'C'
+    mov al, 'C'
 
-	hx.syscall imprimirCaractere
+    hx.syscall imprimirCaractere
 
-	stc
+    stc
 
-	jmp .fim
-	
+    jmp .fim
+    
 .successo:
 
-	clc
+    clc
 
-.fim:	
+.fim:   
 
-	popad
+    popad
 
-	mov ebx, 3
+    mov ebx, 3
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -311,21 +311,21 @@ criarArquivo:
 
 lerArquivo:
 
-	pushad
-	
-	mov esi, endBuffer + 1024*10000 + 1024*3000	
+    pushad
+    
+    mov esi, endBuffer + 1024*10000 + 1024*3000 
 
-	add esi, [filePosition]
+    add esi, [filePosition]
 
-	mov edi, edx
+    mov edi, edx
 
-	rep movsb
-	
-	popad
+    rep movsb
+    
+    popad
 
-	clc
+    clc
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -341,25 +341,25 @@ lerArquivo:
 
 escreverArquivo:
 
-	mov esi, fileNameW
+    mov esi, fileNameW
 
-	hx.syscall deletarArquivo
-	
-	mov eax, ecx
-	mov edi, edx
-	mov esi, fileNameW
+    hx.syscall deletarArquivo
+    
+    mov eax, ecx
+    mov edi, edx
+    mov esi, fileNameW
 
-	hx.syscall salvarArquivo
+    hx.syscall salvarArquivo
 
-	jc .erro
+    jc .erro
 
-	clc
+    clc
 
-	ret
+    ret
 
 .erro:
 
-	ret
+    ret
 
 ;;************************************************************************************
 
@@ -376,45 +376,45 @@ escreverArquivo:
 
 moverPosicao:
 
-	pushad
+    pushad
 
-	cmp al, 0	
-	je .doInicio
+    cmp al, 0   
+    je .doInicio
 
-	cmp al, 1	
-	je .posicaoAtual
+    cmp al, 1   
+    je .posicaoAtual
 
-	cmp al, 2
-	je .doFim
+    cmp al, 2
+    je .doFim
 
-	jmp .fim
-	
-.doInicio:	
+    jmp .fim
+    
+.doInicio:  
 
-	mov [filePosition], edx
+    mov [filePosition], edx
 
-	jmp .fim
+    jmp .fim
 
 .posicaoAtual:
 
-	add [filePosition], edx
+    add [filePosition], edx
 
-	jmp .fim
-	
+    jmp .fim
+    
 .doFim:
 
-	mov eax, [fileSize]
-	mov [filePosition], eax
+    mov eax, [fileSize]
+    mov [filePosition], eax
 
-	add [filePosition], edx
+    add [filePosition], edx
 
 .fim:
 
-	popad
+    popad
 
-	mov eax, [filePosition]
-	
-	ret
+    mov eax, [filePosition]
+    
+    ret
 
 ;;************************************************************************************
 
@@ -425,7 +425,7 @@ moverPosicao:
 ;;************************************************************************************
 
 ; flat assembler
-; Copyright (c) 1999-2022, Tomasz Grysztar.
+; Copyright (c) 1999-2023, Tomasz Grysztar.
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
@@ -436,264 +436,264 @@ moverPosicao:
 
 get_params:
 
-	jmp obterParametros
+    jmp obterParametros
 
 ;;************************************************************************************
 
 findChar:
 
-	jmp encontrarString
+    jmp encontrarString
 
 ;;************************************************************************************
 
 get_environment_variable:
 
-	ret
+    ret
 
 make_timestamp:
 
-	ret
+    ret
 
 ;;************************************************************************************
 
 exit_program:
 
-	jmp finalizarProcesso
+    jmp finalizarProcesso
 
 ;;************************************************************************************
 
 print_string:
 
-	jmp exibirString
+    jmp exibirString
 
 ;;************************************************************************************
 
 display_character:
 
-	jmp exibirCaractere
+    jmp exibirCaractere
 
 ;;************************************************************************************
 
 display_number:
 
-	jmp exibirNumero
+    jmp exibirNumero
 
 ;;************************************************************************************
 
 display_block:
 
-	jmp exibirBloco
+    jmp exibirBloco
 
 ;;************************************************************************************
 
 ;________________________________________________
 ;Initialize memory
-;IN:	nothing
-;OUT:	[memory_start] 	= Start of free main memory block
-;	[memory_end] 	= End of free main memory block
-;	[additional_memory] 	= Start of additional memory
-;	[additional_memory_end] = End of additional memory
+;IN:    nothing
+;OUT:   [memory_start]  = Start of free main memory block
+;   [memory_end]    = End of free main memory block
+;   [additional_memory]     = Start of additional memory
+;   [additional_memory_end] = End of additional memory
 ;
 
 init_memory:
 
-	mov eax, esp
-	add eax, 1000h-10000h
-	
-	mov [stack_limit], eax
-	
-	mov [memory_start], endBuffer
-	mov [memory_end], endBuffer + 1024*10000
-	
-	mov [additional_memory], endBuffer + 1024*10000
-	mov [additional_memory_end], endBuffer + 1024*10000 + 1024*3000
-	
-	ret
+    mov eax, esp
+    add eax, 1000h-10000h
+
+    mov [stack_limit], eax
+
+    mov [memory_start], endBuffer
+    mov [memory_end], endBuffer + 1024*10000
+
+    mov [additional_memory], endBuffer + 1024*10000
+    mov [additional_memory_end], endBuffer + 1024*10000 + 1024*3000
+
+    ret
 
 ;;************************************************************************************
 
 open:
 
-	jmp abrirArquivo
+    jmp abrirArquivo
 
 ;;************************************************************************************
 
 create:
 
-	jmp criarArquivo
+    jmp criarArquivo
 
 ;;************************************************************************************
 
 close:
 
-	stc
+    stc
 
-	ret
+    ret
 
 ;;************************************************************************************
 
 read:
 
-	jmp lerArquivo
+    jmp lerArquivo
 
 ;;************************************************************************************
 
 write:
 
-	jmp escreverArquivo
+    jmp escreverArquivo
 
 ;;************************************************************************************
 
 lseek:
 
-	jmp moverPosicao
+    jmp moverPosicao
 
 ;;************************************************************************************
 
 ;________________________________________________
 ;Display error and sair
-;IN:	Pointer to error message on stack
-;OUT:	nothing
+;IN:    Pointer to error message on stack
+;OUT:   nothing
 ;
 
 fatal_error:
 
-	mov esi, error_prefix
-	call print_string
-	
-	pop esi			;Error message 
-	call print_string
-	
-	mov esi, error_suffix
-	call print_string
-	
-	jmp exit_program
+    mov esi, error_prefix
+    call print_string
+    
+    pop esi         ;Error message 
+    call print_string
+    
+    mov esi, error_suffix
+    call print_string
+    
+    jmp exit_program
 
 ;________________________________________________
 ;Display user messages
 ;IN/OUT: nothing
-;	
+;   
 display_user_messages:
-	mov [displayed_count],0
-	call show_display_buffer
-	
-	cmp [displayed_count],0
-	je .line_break_ok
-	
-	cmp [last_displayed],0Ah
-	je .line_break_ok
-	
-	mov dl,0Ah
-	call display_character
-	
+    mov [displayed_count],0
+    call show_display_buffer
+    
+    cmp [displayed_count],0
+    je .line_break_ok
+    
+    cmp [last_displayed],0Ah
+    je .line_break_ok
+    
+    mov dl,0Ah
+    call display_character
+    
 .line_break_ok:
-	ret
-	
+    ret
+    
 ;________________________________________________
 ;Display assembler error and sair
 ;IN/OUT: see fasmguide.txt
-;	
+;   
 assembler_error:
-	call	display_user_messages
-	push	dword 0
-	mov	ebx,[current_line]
+    call    display_user_messages
+    push    dword 0
+    mov ebx,[current_line]
       get_error_lines:
-	mov	eax,[ebx]
-	cmp	byte [eax],0
-	je	get_next_error_line
-	push	ebx
-	test	byte [ebx+7],80h
-	jz	display_error_line
-	mov	edx,ebx
+    mov eax,[ebx]
+    cmp byte [eax],0
+    je  get_next_error_line
+    push    ebx
+    test    byte [ebx+7],80h
+    jz  display_error_line
+    mov edx,ebx
       find_definition_origin:
-	mov	edx,[edx+12]
-	test	byte [edx+7],80h
-	jnz	find_definition_origin
-	push	edx
+    mov edx,[edx+12]
+    test    byte [edx+7],80h
+    jnz find_definition_origin
+    push    edx
       get_next_error_line:
-	mov	ebx,[ebx+8]
-	jmp	get_error_lines
+    mov ebx,[ebx+8]
+    jmp get_error_lines
       display_error_line:
-	mov	esi,[ebx]
-	call	print_string
-	mov	esi,line_number_start
-	call	print_string
-	mov	eax,[ebx+4]
-	and	eax,7FFFFFFFh
-	call	display_number
-	mov	dl,']'
-	call	display_character
-	pop	esi
-	cmp	ebx,esi
-	je	line_number_ok
-	mov	dl,20h
-	call	display_character
-	push	esi
-	mov	esi,[esi]
-	movzx	ecx,byte [esi]
-	inc	esi
-	call	display_block
-	mov	esi,line_number_start
-	call	print_string
-	pop	esi
-	mov	eax,[esi+4]
-	and	eax,7FFFFFFFh
-	call	display_number
-	mov	dl,']'
-	call	display_character
+    mov esi,[ebx]
+    call    print_string
+    mov esi,line_number_start
+    call    print_string
+    mov eax,[ebx+4]
+    and eax,7FFFFFFFh
+    call    display_number
+    mov dl,']'
+    call    display_character
+    pop esi
+    cmp ebx,esi
+    je  line_number_ok
+    mov dl,20h
+    call    display_character
+    push    esi
+    mov esi,[esi]
+    movzx   ecx,byte [esi]
+    inc esi
+    call    display_block
+    mov esi,line_number_start
+    call    print_string
+    pop esi
+    mov eax,[esi+4]
+    and eax,7FFFFFFFh
+    call    display_number
+    mov dl,']'
+    call    display_character
       line_number_ok:
-	mov	esi,line_data_start
-	call	print_string
-	mov	esi,ebx
-	mov	edx,[esi]
-	call	open
-	mov	al,2
-	xor	edx,edx
-	call	lseek
-	mov	edx,[esi+8]
-	sub	eax,edx
-	push	eax
-	xor	al,al
-	call	lseek
-	mov	ecx,[esp]
-	mov	edx,[additional_memory]
-	lea	eax,[edx+ecx]
-	cmp	eax,[additional_memory_end]
-	ja	out_of_memory
-	call	read
-	call	close
-	pop	ecx
-	mov	esi,[additional_memory]
+    mov esi,line_data_start
+    call    print_string
+    mov esi,ebx
+    mov edx,[esi]
+    call    open
+    mov al,2
+    xor edx,edx
+    call    lseek
+    mov edx,[esi+8]
+    sub eax,edx
+    push    eax
+    xor al,al
+    call    lseek
+    mov ecx,[esp]
+    mov edx,[additional_memory]
+    lea eax,[edx+ecx]
+    cmp eax,[additional_memory_end]
+    ja  out_of_memory
+    call    read
+    call    close
+    pop ecx
+    mov esi,[additional_memory]
       get_line_data:
-	mov	al,[esi]
-	cmp	al,0Ah
-	je	display_line_data
-	cmp	al,0Dh
-	je	display_line_data
-	cmp	al,1Ah
-	je	display_line_data
-	or	al,al
-	jz	display_line_data
-	inc	esi
-	loop	get_line_data
+    mov al,[esi]
+    cmp al,0Ah
+    je  display_line_data
+    cmp al,0Dh
+    je  display_line_data
+    cmp al,1Ah
+    je  display_line_data
+    or  al,al
+    jz  display_line_data
+    inc esi
+    loop    get_line_data
       display_line_data:
-	mov	ecx,esi
-	mov	esi,[additional_memory]
-	sub	ecx,esi
-	call	display_block
-	mov	esi,lf
-	call	print_string
-	pop	ebx
-	or	ebx,ebx
-	jnz	display_error_line
-	mov	esi,error_prefix
-	call	print_string
-	pop	esi
-	call	print_string
-	mov	esi,error_suffix
-	call	print_string
-	mov	al,2
-	jmp	exit_program
+    mov ecx,esi
+    mov esi,[additional_memory]
+    sub ecx,esi
+    call    display_block
+    mov esi,lf
+    call    print_string
+    pop ebx
+    or  ebx,ebx
+    jnz display_error_line
+    mov esi,error_prefix
+    call    print_string
+    pop esi
+    call    print_string
+    mov esi,error_suffix
+    call    print_string
+    mov al,2
+    jmp exit_program
 ;______________________________________________________________________________
 
 error_prefix db 'Error: ',0

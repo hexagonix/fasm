@@ -1,5 +1,5 @@
 ; flat assembler interface for Linux
-; Copyright (c) 1999-2021, Tomasz Grysztar.
+; Copyright (c) 1999-2023, Tomasz Grysztar.
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
@@ -130,24 +130,24 @@ information:
 fileSize:     dd 0
 filePosition: dd 0
 nomeArquivo:  times 50 db 0
-fileNameW:    times 50 db 0   ;; Nome de arquivo para escrever
+fileNameW:    times 50 db 0 ;; Nome de arquivo para escrever
 
 include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
 include '../VERSION.INC'
 
-_copyright db 'Copyright (c) 1999-2022, Tomasz Grysztar', 0xA 
-           db 'Copyright (c) 2015-2022, Felipe Miguel Nery Lunkes', 0xA, 0
+_copyright db 'Copyright (c) 1999-2023, Tomasz Grysztar', 0xA 
+           db 'Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes', 0xA, 0
 
 _logo db 10, 'flat assembler for Hexagonix version ',VERSION_STRING,0
 _usage db 0xA
        db 'Usage: fasmX <source> [output]',0xA
        db 0
-_memory_prefix db '  (',0
-_memory_suffix db ' Kbytes of memory)',0xA,0
-_passes_suffix db ' passes, ',0
+_memory_prefix  db '  (',0
+_memory_suffix  db ' Kbytes of memory)',0xA,0
+_passes_suffix  db ' passes, ',0
 _seconds_suffix db ' seconds, ',0
-_bytes_suffix db ' bytes.',0xA,0
+_bytes_suffix   db ' bytes.',0xA,0
 
 include '../ERRORS.INC'
 include '../SYMBDUMP.INC'
@@ -181,7 +181,6 @@ preprocessing_done db ?
 
 predefinitions rb 1000h
 buffer rb 1000h
-
 
 regES:  dw 0
 
