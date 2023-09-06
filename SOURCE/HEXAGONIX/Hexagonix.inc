@@ -21,7 +21,7 @@
 ;; [input_file]  - Nome do código fonte
 ;; [output_file] - Nome do binário a ser gerado
 ;;
-;;  CF definido em caso de erro
+;; CF definido em caso de erro
 
 obterParametros:
 
@@ -561,7 +561,7 @@ fatal_error:
     mov esi, error_prefix
     call print_string
     
-    pop esi         ;Error message 
+    pop esi ;Error message 
     call print_string
     
     mov esi, error_suffix
