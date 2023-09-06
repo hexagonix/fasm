@@ -14,7 +14,7 @@ use32
 
 include "HAPP.s" ;; Aqui está uma estrutura para o cabeçalho HAPP
 
-;; Instância | Estrutura | Arquitetura | Versão | Subversão | Entrada | Tipo  
+;; Instância | Estrutura | Arquitetura | Versão | Subversão | Entrada | Tipo
 cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 1, 00, fasmX, 01h
 
 ;;************************************************************************************
@@ -29,17 +29,17 @@ fasmX:
 ;; Capturar os parâmetros fornecidos pelo Hexagon®
 
     mov [regES], es
-    
+
     push ds
-    pop es          
-    
+    pop es
+
     mov [linha_comando], edi
-    
+
 ;; Início do código do FASM
 
     mov esi,_logo
     call    print_string
-    
+
     call    get_params
     jc  information
 
@@ -136,7 +136,7 @@ include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
 include '../VERSION.INC'
 
-_copyright db 'Copyright (c) 1999-2023, Tomasz Grysztar', 0xA 
+_copyright db 'Copyright (c) 1999-2023, Tomasz Grysztar', 0xA
            db 'Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes', 0xA, 0
 
 _logo db 10, 'flat assembler for Hexagonix version ',VERSION_STRING,0
