@@ -1,6 +1,10 @@
 
 Visit http://flatassembler.net/ for more information.
 
+version 1.73.31 (Oct 27, 2023)
+
+[+] Improvements to memory segmentation and code formatting.
+
 version 1.73.31x (Aug 24, 2023)
 
 [+] Tested for Hexagonix.

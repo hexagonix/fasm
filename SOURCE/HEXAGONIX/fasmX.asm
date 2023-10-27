@@ -26,14 +26,14 @@ include "console.s"
 
 fasmX:
 
-;; Capturar os parâmetros fornecidos pelo Hexagon®
+;; Capturar os parâmetros fornecidos pelo Hexagon
 
     mov [regES], es
 
-    push ds
+    push ds ;; Segmento de dados do modo usuário (38h)
     pop es
 
-    mov [linha_comando], edi
+    mov [command_line], edi
 
 ;; Início do código do FASM
 
@@ -129,8 +129,7 @@ information:
 
 fileSize:     dd 0
 filePosition: dd 0
-nomeArquivo:  times 50 db 0
-fileNameW:    times 50 db 0 ;; Nome de arquivo para escrever
+fileName: times 50 db 0 ;; Nome de arquivo para escrever
 
 include 'Hexagonix.inc' ;; Interface para o Hexagonix
 
@@ -167,7 +166,7 @@ align 4
 
 include '../VARIABLE.INC'
 
-linha_comando dd ?
+command_line dd ?
 memory_setting dd ?
 definitions_pointer dd ?
 environment dd ?

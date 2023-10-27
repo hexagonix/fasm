@@ -14,7 +14,7 @@
 
 ;; Entrada:
 ;;
-;; [linha_comando] = Aponta para a linha fornecida pelo sistema
+;; [command_line] = Aponta para a linha fornecida pelo sistema
 ;; 
 ;; Saída:
 ;;
@@ -25,7 +25,7 @@
 
 obterParametros:
 
-    mov esi, [linha_comando]
+    mov esi, [command_line]
     mov [input_file], esi
         
     cmp byte[esi], 0
@@ -193,6 +193,11 @@ abrirArquivo:
 
     pushad
     
+    push es 
+
+    push ds 
+    pop es
+
     mov esi, edx
 
     hx.syscall tamanhoString
@@ -201,14 +206,16 @@ abrirArquivo:
     
     mov ecx, eax
     mov esi, edx
-    mov edi, nomeArquivo
+    mov edi, fileName
 
     rep movsb
     
+    pop es 
+
     popad
     pushad
         
-    mov esi, nomeArquivo
+    mov esi, fileName
     mov edi, endBuffer + 1024*10000 + 1024*3000
 
     hx.syscall abrir
@@ -248,6 +255,11 @@ criarArquivo:
 
     pushad
     
+    push es 
+
+    push ds
+    pop ds
+
     mov esi, edx
 
     hx.syscall tamanhoString
@@ -256,11 +268,13 @@ criarArquivo:
     
     mov ecx, eax
     mov esi, edx
-    mov edi, fileNameW
+    mov edi, fileName
 
     rep movsb
     
-    mov esi, fileNameW
+    pop es
+
+    mov esi, fileName
 
     hx.syscall deletarArquivo
     
@@ -268,8 +282,8 @@ criarArquivo:
     pushad
     
     mov eax, 0
-    mov esi, fileNameW
-    mov edi, fileNameW
+    mov esi, fileName
+    mov edi, fileName
 
     hx.syscall salvarArquivo        
 
@@ -312,6 +326,11 @@ criarArquivo:
 lerArquivo:
 
     pushad
+
+    push es
+
+    push ds
+    pop es
     
     mov esi, endBuffer + 1024*10000 + 1024*3000 
 
@@ -320,6 +339,8 @@ lerArquivo:
     mov edi, edx
 
     rep movsb
+
+    pop es
     
     popad
 
@@ -341,13 +362,13 @@ lerArquivo:
 
 escreverArquivo:
 
-    mov esi, fileNameW
+    mov esi, fileName
 
     hx.syscall deletarArquivo
     
     mov eax, ecx
     mov edi, edx
-    mov esi, fileNameW
+    mov esi, fileName
 
     hx.syscall salvarArquivo
 
