@@ -10,32 +10,32 @@
 
 use32
 
-;; Agora vamos criar um cabeçalho para a imagem HAPP final do aplicativo.
+;; Now let's create a HAPP header for the application
 
-include "HAPP.s" ;; Aqui está uma estrutura para o cabeçalho HAPP
+include "HAPP.s" ;; Here is a structure for the HAPP header
 
-;; Instância | Estrutura | Arquitetura | Versão | Subversão | Entrada | Tipo
-cabecalhoAPP cabecalhoHAPP HAPP.Arquiteturas.i386, 1, 00, fasmX, 01h
+;; Instance | Structure | Architecture | Version | Subversion | Entry Point | Image type
+appHeader headerHAPP HAPP.Architectures.i386, 1, 00, fasmX, 01h
 
 ;;************************************************************************************
 
-include "hexagon.s" ;; libasm para flat assembler
+include "hexagon.s" ;; libasm for flat assembler
 include "console.s"
 
 ;;************************************************************************************
 
 fasmX:
 
-;; Capturar os parâmetros fornecidos pelo Hexagon
+;; Capture parameters provided by Hexagon
 
     mov [regES], es
 
-    push ds ;; Segmento de dados do modo usuário (38h)
+    push ds ;; User mode data segment (38h)
     pop es
 
     mov [command_line], edi
 
-;; Início do código do FASM
+;; Start of the fasm code
 
     mov esi,_logo
     call    print_string
@@ -129,14 +129,14 @@ information:
 
 fileSize:     dd 0
 filePosition: dd 0
-fileName: times 50 db 0 ;; Nome de arquivo para escrever
+fileName: times 50 db 0
 
-include 'Hexagonix.inc' ;; Interface para o Hexagonix
+include 'Hexagonix.inc' ;; Interface for Hexagonix
 
 include '../VERSION.INC'
 
 _copyright db 'Copyright (c) 1999-2023, Tomasz Grysztar', 0xA
-           db 'Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes', 0xA, 0
+           db 'Copyright (c) 2015-2024, Felipe Miguel Nery Lunkes', 0xA, 0
 
 _logo db 10, 'flat assembler for Hexagonix version ',VERSION_STRING,0
 _usage db 0xA

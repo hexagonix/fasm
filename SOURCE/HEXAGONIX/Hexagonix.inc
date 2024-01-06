@@ -8,28 +8,28 @@
 
 ;;************************************************************************************
 ;;
-;; Adaptação para execução no Hexagonix®
+;; Interface for running on Hexagonix
 ;;
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; [command_line] = Aponta para a linha fornecida pelo sistema
-;; 
-;; Saída:
+;; [command_line] = Points to the line provided by the system
 ;;
-;; [input_file]  - Nome do código fonte
-;; [output_file] - Nome do binário a ser gerado
+;; Output:
 ;;
-;; CF definido em caso de erro
+;; [input_file] - Source code name
+;; [output_file] - Name of the binary to be generated
+;;
+;; CF set in case of error
 
-obterParametros:
+getParameters:
 
     mov esi, [command_line]
     mov [input_file], esi
         
     cmp byte[esi], 0
-    je .parametrosInvalidos
+    je .invalidParameters
     
     mov [symbols_file], 0
     mov [memory_setting], 0
@@ -38,28 +38,28 @@ obterParametros:
     
     mov al, ' '
 
-    hx.syscall encontrarCaractere
+    hx.syscall hx.findCharacter
 
-    jc .unicoArgumento
+    jc .singleArgument
 
     mov al, ' '
 
-    call encontrarString
+    call findString
     
     mov [output_file], esi
-    jmp .pronto
+    jmp .done
     
-.unicoArgumento:
+.singleArgument:
 
     mov [output_file], 0
 
-.pronto:
+.done:
 
     clc
 
     ret
     
-.parametrosInvalidos:
+.invalidParameters:
 
     stc
 
@@ -67,27 +67,27 @@ obterParametros:
 
 ;;************************************************************************************
 
-;; Procurar um caractere específico em uma string
+;; Search for a specific character in a string
 ;;
-;; Entrada:
+;; Input:
 ;;
 ;; ESI - String
-;; AL  - Caractere para pesquisar
-;; 
-;; Saída:
-;; 
-;; ESI - Posição do caractere
+;; AL - Character to search
+;;
+;; Output:
+;;
+;; ESI - Character position
 
-encontrarString:
+findString:
 
     lodsb
     
     cmp al, ' '
-    je .pronto
+    je .done
     
-    jmp encontrarString
+    jmp findString
 
-.pronto:
+.done:
 
     mov byte[esi-1], 0
 
@@ -95,27 +95,27 @@ encontrarString:
 
 ;;************************************************************************************
 
-finalizarProcesso:
+finishProcess:
 
     mov es, [regES]
     
     mov ebx, 00h
     
-    hx.syscall encerrarProcesso
+    hx.syscall hx.exit
 
     ret
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
 ;; ESI - String
 
-exibirString:
+invalidParameters:
 
     push ebx
 
-    imprimirString
+    printString
 
     pop ebx
 
@@ -123,17 +123,17 @@ exibirString:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; AL - Caractere
+;; AL - Character
 
-exibirCaractere:
+displayCharacter:
 
     push ebx
 
     mov al, dl
 
-    hx.syscall imprimirCaractere
+    hx.syscall hx.printCharacter
 
     pop ebx
 
@@ -141,15 +141,15 @@ exibirCaractere:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; EAX - Número
+;; EAX - Number
 
-exibirNumero:
+displayNumber:
 
     push ebx
 
-    imprimirInteiro
+    printInteger
 
     pop ebx
 
@@ -157,12 +157,12 @@ exibirNumero:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
 ;; ESI - String
-;; ECX - Caracteres para exibir
+;; ECX - Characters to display
 
-exibirBloco:
+displayBlock:
 
     push ebx
 
@@ -170,7 +170,7 @@ exibirBloco:
 
     lodsb
 
-    hx.syscall imprimirCaractere
+    hx.syscall hx.printCharacter
 
     loop .loop
     
@@ -180,16 +180,16 @@ exibirBloco:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; EDX - Ponteiro para o nome de arquivo
-;; EBX - Manipulador do arquivo (ignorado)
+;; EDX - Pointer to filename
+;; EBX - File handler (ignored)
 ;;
-;; Saída:
+;; Output:
 ;;
-;; CF definido quando o arquivo não existe
+;; CF defined when file does not exist
 
-abrirArquivo:
+openFileHexagonix:
 
     pushad
     
@@ -200,7 +200,7 @@ abrirArquivo:
 
     mov esi, edx
 
-    hx.syscall tamanhoString
+    hx.syscall hx.stringSize
 
     inc eax
     
@@ -218,9 +218,9 @@ abrirArquivo:
     mov esi, fileName
     mov edi, endBuffer + 1024*10000 + 1024*3000
 
-    hx.syscall abrir
+    hx.syscall hx.open
 
-    jc .erro
+    jc .error
 
     mov [fileSize], eax
     
@@ -232,7 +232,7 @@ abrirArquivo:
 
     ret
 
-.erro:
+.error:
 
     stc
 
@@ -242,16 +242,16 @@ abrirArquivo:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; EDX - Ponteiro para o nome do arquivo
-;; EBX - Manipulador do arquivo (ignorado)
+;; EDX - Pointer to filename
+;; EBX - File handler (ignored)
 ;;
-;; Saída:
+;; Output:
 ;;
-;; CF definido em caso de erro
+;; CF defined in case of error
 
-criarArquivo:
+createFileHexagonix:
 
     pushad
     
@@ -262,7 +262,7 @@ criarArquivo:
 
     mov esi, edx
 
-    hx.syscall tamanhoString
+    hx.syscall hx.stringSize
 
     inc eax
     
@@ -276,7 +276,7 @@ criarArquivo:
 
     mov esi, fileName
 
-    hx.syscall deletarArquivo
+    hx.syscall hx.unlink
     
     popad
     pushad
@@ -285,25 +285,25 @@ criarArquivo:
     mov esi, fileName
     mov edi, fileName
 
-    hx.syscall salvarArquivo        
+    hx.syscall hx.create        
 
-    jnc .successo       
+    jnc .success       
     
-.errro:
+.error:
 
     mov al, 'C'
 
-    hx.syscall imprimirCaractere
+    hx.syscall hx.printCharacter
 
     stc
 
-    jmp .fim
+    jmp .end
     
-.successo:
+.success:
 
     clc
 
-.fim:   
+.end:   
 
     popad
 
@@ -313,17 +313,17 @@ criarArquivo:
 
 ;;************************************************************************************
 
-;; Entrada:
-;; 
-;; EBX - Manipulador do arquivo (ignorado)
-;; ECX - Número de bytes para ler 
-;; EDX - Buffer para ler
+;; Input:
 ;;
-;; Saída:
+;; EBX - File handler (ignored)
+;; ECX - Number of bytes to read
+;; EDX - Buffer to read
 ;;
-;; CF definido em caso de erro
+;; Output:
+;;
+;; CF defined in case of error
 
-lerArquivo:
+readFileHexagonix:
 
     pushad
 
@@ -350,86 +350,86 @@ lerArquivo:
 
 ;;************************************************************************************
 
-;; Entrada:
+;; Input:
 ;;
-;; EBX - Manipulador do arquivo (ignorado)
-;; ECX - Bytes para ler
-;; EDX - Dados para ler
+;; EBX - File handler (ignored)
+;; ECX - Bytes to read
+;; EDX - Data to read
 ;;
-;; Saída:
+;; Output:
 ;;
-;; CF definido em caso de erro
+;; CF defined in case of error
 
-escreverArquivo:
+writeFileHexagonix:
 
     mov esi, fileName
 
-    hx.syscall deletarArquivo
+    hx.syscall hx.unlink
     
     mov eax, ecx
     mov edi, edx
     mov esi, fileName
 
-    hx.syscall salvarArquivo
+    hx.syscall hx.create
 
-    jc .erro
+    jc .error
 
     clc
 
     ret
 
-.erro:
+.error:
 
     ret
 
 ;;************************************************************************************
 
-;; Mover para determinada posição no arquivo
+;; Move to certain position in the file
 ;;
-;; Entrada:
+;; Input:
 ;;
-;; EDX - Bytes para pular
-;; AL  - Origem (0 = início, 1 = posição atual, 2 = fim)
+;; EDX - Bytes to skip
+;; AL - Origin (0 = start, 1 = current position, 2 = end)
 ;;
-;; Saída:
+;; Output:
 ;;
-;; EAX - Posição no arquivo
+;; EAX - Position in file
 
-moverPosicao:
+fileSeekHexagonix:
 
     pushad
 
     cmp al, 0   
-    je .doInicio
+    je .fromBeginning
 
     cmp al, 1   
-    je .posicaoAtual
+    je .currentPosition
 
     cmp al, 2
-    je .doFim
+    je .fromEnd
 
-    jmp .fim
+    jmp .end
     
-.doInicio:  
+.fromBeginning:  
 
     mov [filePosition], edx
 
-    jmp .fim
+    jmp .end
 
-.posicaoAtual:
+.currentPosition:
 
     add [filePosition], edx
 
-    jmp .fim
+    jmp .end
     
-.doFim:
+.fromEnd:
 
     mov eax, [fileSize]
     mov [filePosition], eax
 
     add [filePosition], edx
 
-.fim:
+.end:
 
     popad
 
@@ -441,7 +441,7 @@ moverPosicao:
 
 ;;************************************************************************************
 ;;
-;; Fim da implementação específica para o Hexagonix®
+;; End of specific implementation for Hexagonix
 ;;
 ;;************************************************************************************
 
@@ -450,20 +450,20 @@ moverPosicao:
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2015-2023, Felipe Miguel Nery Lunkes
+; Copyright (c) 2015-2024, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
-;; Redirecionamento de funções e adaptações para execução no Hexagonix®
+;; Redirection of functions and adaptations to run on Hexagonix
 
 get_params:
 
-    jmp obterParametros
+    jmp getParameters
 
 ;;************************************************************************************
 
 findChar:
 
-    jmp encontrarString
+    jmp findString
 
 ;;************************************************************************************
 
@@ -479,31 +479,31 @@ make_timestamp:
 
 exit_program:
 
-    jmp finalizarProcesso
+    jmp finishProcess
 
 ;;************************************************************************************
 
 print_string:
 
-    jmp exibirString
+    jmp invalidParameters
 
 ;;************************************************************************************
 
 display_character:
 
-    jmp exibirCaractere
+    jmp displayCharacter
 
 ;;************************************************************************************
 
 display_number:
 
-    jmp exibirNumero
+    jmp displayNumber
 
 ;;************************************************************************************
 
 display_block:
 
-    jmp exibirBloco
+    jmp displayBlock
 
 ;;************************************************************************************
 
@@ -535,13 +535,13 @@ init_memory:
 
 open:
 
-    jmp abrirArquivo
+    jmp openFileHexagonix
 
 ;;************************************************************************************
 
 create:
 
-    jmp criarArquivo
+    jmp createFileHexagonix
 
 ;;************************************************************************************
 
@@ -555,19 +555,19 @@ close:
 
 read:
 
-    jmp lerArquivo
+    jmp readFileHexagonix
 
 ;;************************************************************************************
 
 write:
 
-    jmp escreverArquivo
+    jmp writeFileHexagonix
 
 ;;************************************************************************************
 
 lseek:
 
-    jmp moverPosicao
+    jmp fileSeekHexagonix
 
 ;;************************************************************************************
 
