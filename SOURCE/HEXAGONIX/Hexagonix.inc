@@ -450,7 +450,7 @@ fileSeekHexagonix:
 ; All rights reserved.
 
 ; Hexagonix system interface for flat assembler
-; Copyright (c) 2015-2024, Felipe Miguel Nery Lunkes
+; Copyright (c) 2015-2025, Felipe Miguel Nery Lunkes
 ; All rights reserved.
 
 ;; Redirection of functions and adaptations to run on Hexagonix
